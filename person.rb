@@ -1,4 +1,4 @@
-Class Person
+class Person
   def initialize(age, name= "Unknown", parent_permission = true)
 	@id = Random.rand(1..1000)
 	@age = age
@@ -15,7 +15,7 @@ Class Person
 
   private
   def is_of_age?
-	@age >= 18
+	@age.to_i >= 18
   end
 
 end

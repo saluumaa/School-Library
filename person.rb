@@ -7,11 +7,16 @@ class Person < Nameable
     @id = Random.rand(1..1000)
     @age = age
     @name = name
+    @rentals = []
     @parent_permission = parent_permission
   end
 
   attr_accessor :age, :name
   attr_reader :id
+
+  def add_rental(rental)
+    @rentals << rental
+  end
 
   def correct_name
     @name

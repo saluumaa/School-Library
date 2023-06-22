@@ -101,4 +101,4 @@ def list_rentals_by_person_id
 		puts "Book author: #{rental.book.author}"
 	end
 end
-
+end

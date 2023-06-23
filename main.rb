@@ -23,16 +23,16 @@ end
 
 def choose_option(app)
   options = {
-    '1' => -> { app.list_books },
-    '2' => -> { app.list_people },
-    '3' => -> { create_person(app) },
-    '4' => -> { create_book(app) },
-    '5' => -> { create_rental(app) },
-    '6' => -> { list_rentals_by_person_id(app) },
-    '7' => -> { exit_app }
+    '1' => :list_books,
+    '2' => :list_people,
+    '3' => :create_person,
+    '4' => :create_book,
+    '5' => :create_rental,
+    '6' => :list_rentals_by_person_id,
+    '7' => :exit_app
   }
   user_choice = gets.chomp
-  if options.key(user_choice)
+  if options.key?(user_choice)
     app.send(options[user_choice])
   else
     puts 'Invalid option, please try again'
@@ -43,3 +43,5 @@ def exit_app
   puts 'Thanks for using the school library app'
   exit
 end
+
+main

@@ -2,6 +2,7 @@ require './book'
 require './person'
 require './rental'
 require './student'
+require './teacher'
 class App
   def initialize
     @books = []
@@ -31,8 +32,8 @@ class App
     age = gets.chomp
     puts 'Has parent permission? (Y/N)'
     permission = gets.chomp.downcase
-    permission = permission == 'y'
-    student = Person.new(age, name: name, parent_permission: permission)
+    parent_permission = permission == 'y'
+    student = Person.new(age, name: name, parent_permission: parent_permission)
     @people.push(student)
     puts 'Student created successfully'
   end
@@ -40,16 +41,27 @@ class App
   ## CREATE TEACHER
 
   def create_teacher
+    puts 'Specialization:'
+    specialization = gets.chomp
     puts 'Teacher name:'
     name = gets.chomp
     puts 'Teacher age:'
     age = gets.chomp
-    puts 'Teacher specialization:'
-    gets.chomp
-    puts 'Has parent permission? (Y/N)'
-    teacher = Person.new(age, name: name, parent_permission: permission)
-    @people.push(teacher)
+    @people << Teacher.new(age, specialization, name: name)
     puts 'Teacher created successfully'
+  end
+
+  # Create a person
+  def create_person
+    puts 'Do you want to  create a student (1) or a teacher(2)?'
+    input_result = gets.chomp.to_i
+
+    case input_result
+    when 1
+      create_student
+    when 2
+      create_teacher
+    end
   end
 
   ## CREATE BOOK
@@ -79,22 +91,19 @@ class App
     person_index = gets.chomp.to_i
     puts 'Date:'
     date = gets.chomp
-    rental = Rental.new(date, @books[book_index], @people[person_index])
-    @people[person_index].rentals.push(rental)
+    @rentals << Rental.new(@books[book_index], @people[person_index], date)
     puts 'Rental created successfully'
   end
 
   ## LIST RENTALS BY PERSON
 
   def list_rentals_by_person_id
-    puts 'write person id'
+    puts 'write person id:'
     person_id = gets.chomp.to_i
     person = @people.find { |prson| prson.id == person_id }
     rentals = @rentals.select { |rental| rental.person == person }
     rentals.each do |rental|
-      puts "Date: #{rental.date}"
-      puts "Book title: #{rental.book.title}"
-      puts "Book author: #{rental.book.author}"
+      puts "Book: #{rental.book.title}, Book: #{rental.book.author} Date: #{rental.date}"
     end
   end
 end

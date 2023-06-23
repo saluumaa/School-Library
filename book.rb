@@ -11,5 +11,7 @@ class Book
     @rentals << rental
   end
 
-  attr_reader :rentals
+  def rentals
+    @rentals.dup.freeze
+  end
 end

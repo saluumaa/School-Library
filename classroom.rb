@@ -1,6 +1,6 @@
 class ClassRoom
-  att_accessor :label
-  att_reader :students
+  attr_accessor :label
+  attr_reader :students
 
   def initialize(label)
     @label = label

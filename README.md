@@ -99,7 +99,6 @@ Thats it now you can execute your program on terminal:)
 
 ## 👥 Authors <a name="authors"></a>
 
-<a name="author"></a>
 👤 **Salma Ibrahim**
 
 - GitHub: [@Saluumaa](https://github.com/saluumaa)
